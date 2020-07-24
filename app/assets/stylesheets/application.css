@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ * {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+   font-family:Microsoft JhengHei;
+ }
+ h1 {
+   font-size: 40px;
+ }
