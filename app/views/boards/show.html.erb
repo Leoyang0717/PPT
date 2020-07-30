@@ -1,2 +1,15 @@
 <h1>看板 <%= @board.title %></h1>
-<%= @board.intro %>
+<p>看板描述：<%= @board.intro %></p>
+
+
+
+<% @post.each do |post| %>
+  <ul>
+    <li>文章標題：
+      <%= link_to post.title,post_path(post) %>
+      <%= link_to '編輯',edit_post_path(post) %>
+      <%= link_to '刪除',post_path(post),method:'delete',data: {confirm: '確定刪除文章嗎?'}%>
+    </li>
+  </ul>
+<% end %>
+<%= link_to '新增文章',new_board_post_path(@board) %>

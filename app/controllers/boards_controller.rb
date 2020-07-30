@@ -18,6 +18,7 @@ class BoardsController < ApplicationController
   end
 
   def show
+    @post = @board.posts
   end
   def edit
   end

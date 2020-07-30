@@ -1,0 +1,28 @@
+<h1>新增文章</h1>
+
+<% if @post.errors.any? %>
+  <ul>
+  <% @post.errors.full_messages.each do |message| %>
+  <li>
+  <%= message %>
+  </li>
+  <% end %>
+  </ul>
+<% end %>
+
+<ul>
+<%= form_with(model: @post,url: board_posts_path,local: true) do |post| %>
+<li>
+<%= post.label :title,"文章名稱"%>
+<%= post.text_field :title %>
+</li>
+<li>
+<%= post.label :content,"內容"%>
+<%= post.text_area :content %>
+</li>
+<li>
+<%= post.submit "送出" %>
+<% end %>
+</ul>
+
+
