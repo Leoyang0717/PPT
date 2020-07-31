@@ -11,7 +11,4 @@ class Board < ApplicationRecord
   # default_scope { where(deleted_at: nil) }
   # scope :available, lambda { where(deleted_at: nil) }
 
-  def destroy
-    update(deleted_at: Time.now)
-  end
 end
