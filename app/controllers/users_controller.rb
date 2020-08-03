@@ -4,8 +4,21 @@ class UsersController < ApplicationController
   end
 
   def sign_in
+    @user = User.new
   end
-
+  def login
+    # if user_params[:account] && user_params[:password] login已經先幫我們確認一波了
+      user = User.login(user_params)
+      if user
+        sign_in_user(user)
+        redirect_to root_path, notice:'登入成功'
+      else
+        redirect_to sign_in_users_path, notice:'請輸入正確帳號密碼'
+      end
+    # else
+    #   redirect_to sign_in_users_path, notice:'請輸入正確帳號密碼'
+    # end
+  end
   def create
     @user = User.new(user_params)
     if @user.save
@@ -22,12 +35,14 @@ class UsersController < ApplicationController
   end
   private
   def sign_in_user(u)
-    session[:user_token] = u.id
+    session[:user_token] = u.email
   end
 
   def sign_out_user
     session[:user_token] = nil
   end
+
+
   def user_params
     params.require(:user).permit(:account,:password,:email)
   end
