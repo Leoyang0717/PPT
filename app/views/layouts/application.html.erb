@@ -10,7 +10,9 @@
   </head>
 
   <body>
-  <%= flash[:notice] %>
+    <%= render "shared/frontend/navbar" %>
+    <%= render "shared/common/notice" %>
     <%= yield %>
+    <%= render "shared/frontend/footer" %>
   </body>
 </html>

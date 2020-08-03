@@ -20,6 +20,14 @@
    list-style: none;
    font-family:Microsoft JhengHei;
  }
+ body {
+   background-color: #000;
+   color:#fff;
+ }
+ a{
+   text-decoration: none;
+   color:#fff;
+ }
  h1 {
    font-size: 40px;
  }
