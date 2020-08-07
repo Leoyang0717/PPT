@@ -6,8 +6,13 @@ class User < ApplicationRecord
   validates :password, presence: true
   # ,format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
   before_create :encrypt_password
+  
   has_many :board_masters
   has_many :boards,through: :board_masters
+  
+  has_many :favorite_boards
+  has_many :favorited_boards,through: :favorite_boards,source: :board
+
   has_many :posts
 
   def self.login(options)
@@ -17,6 +22,14 @@ class User < ApplicationRecord
     else
       return nil #可不寫
     end
+  end
+
+  def toggle_favorite(board)
+    if favorited_boards.exists?(board.id)
+      favorited_boards.destroy(board)
+    else
+      favorited_boards << board
+    end   
   end
 
   private

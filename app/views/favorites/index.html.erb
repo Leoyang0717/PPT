@@ -1,0 +1,13 @@
+<h1>我的最愛</h1>
+
+<% if @boards.any? %>
+  <ul>
+    <% @boards.each do |board| %>
+      <li>
+        <%= board.title %>
+      </li>
+    <% end %>
+  <% else %>
+    <p>沒有任何最愛的看板</p>
+  </ul>
+<% end %>

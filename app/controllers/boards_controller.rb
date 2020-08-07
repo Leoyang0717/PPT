@@ -1,7 +1,7 @@
 class BoardsController < ApplicationController
   
 
-  before_action :board_id,only: [:show,:edit,:update,:destroy]
+  before_action :board_id,only: [:show,:edit,:update,:destroy,:favorite]
   before_action :authenticate_user! ,except: [:index,:show]
   def index
     @boards = Board.all
@@ -38,7 +38,10 @@ class BoardsController < ApplicationController
       redirect_to boards_path,notice: "刪除成功"
     end
   end
-
+  def favorite
+    current_user.toggle_favorite(@board)
+    redirect_to favorites_path, notice: 'OK!'
+  end
   private
   def board_params
     params.require(:board).permit(:title, :intro)

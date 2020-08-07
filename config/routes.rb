@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root "boards#index"
 
   resources :boards do 
+    member do
+      post :favorite
+    end
     # resources :posts, only: [:index,:show,:new]
     resources :posts,shallow: true
   end
@@ -14,6 +17,7 @@ Rails.application.routes.draw do
       delete :sign_out
     end
   end
+  resources :favorites,except: [:show,:edit,:new,:create] 
   # resources :posts, except: [:index,:show,:new]
   
   # get "/", to: "boards#index"
