@@ -6,11 +6,9 @@ Rails.application.routes.draw do
     # resources :posts, only: [:index,:show,:new]
     resources :posts,shallow: true
   end
-  resources :users, only: [:create] do
+  resources :users, only: [:create,:edit,:update] do
     collection do
       get :sign_up
-      get :edit 
-      patch :update
       get :sign_in
       post :login
       delete :sign_out

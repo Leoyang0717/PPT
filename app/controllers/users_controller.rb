@@ -33,15 +33,16 @@ class UsersController < ApplicationController
     sign_out_user
     redirect_to root_path, notice:'登出成功'
   end
+
+  
   private
   def sign_in_user(u)
-    session[:user_token] = u.email
+    session[:user_token] = u.id
   end
 
   def sign_out_user
     session[:user_token] = nil
   end
-
 
   def user_params
     params.require(:user).permit(:account,:password,:email)

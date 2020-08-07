@@ -1,9 +1,18 @@
 class Post < ApplicationRecord
   belongs_to :board
+  belongs_to :user
   validates :title, presence: true
   validates :serial,uniqueness: true
 
   before_create :create_serial
+
+  def display_username
+    if user.nil?
+      "未知者"
+    else
+      user.account
+    end
+  end
 
   private
   def create_serial
