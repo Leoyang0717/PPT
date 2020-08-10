@@ -3,7 +3,8 @@ class Post < ApplicationRecord
   belongs_to :user
   validates :title, presence: true
   validates :serial,uniqueness: true
-
+  has_many :comments
+  
   before_create :create_serial
 
   def display_username

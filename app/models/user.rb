@@ -14,7 +14,8 @@ class User < ApplicationRecord
   has_many :favorited_boards,through: :favorite_boards,source: :board
 
   has_many :posts
-
+  has_many :comments
+  
   def self.login(options)
     if options[:account] && options[:password]
       find_by(account: options[:account],
@@ -40,5 +41,8 @@ class User < ApplicationRecord
   def bigbang(string)
     string = "x" + string + "y"
     Digest::SHA1.hexdigest(string)
+  end
+  def self.aaa
+    puts "aaa"
   end
 end
