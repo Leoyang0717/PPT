@@ -1,5 +1,10 @@
-<h1>看板 <%= @board.title %></h1>
-<%= link_to "我的最愛", favorite_board_path(@board), method: 'post'  %>
+<h1 data-controller="heart" data-heart-board = "<%= @board.id %>">
+  看板<%= @board.title %>
+  <%= link_to "我的最愛", favorite_board_path(@board), method: 'post'  %>
+  <button data-action="click->heart#favorite">
+    <i class="far fa-heart" data-target="heart.heart"></i>
+  </button>
+</h1>
 <div>
 [版主:<%=display_bm(@board) %>]
 </div>

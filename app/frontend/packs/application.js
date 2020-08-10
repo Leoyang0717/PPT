@@ -7,6 +7,8 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("../scripts") // 他會自動去找scripts底下的index.js，一定要取index
+require("stylesheets")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -16,5 +18,4 @@ require("channels")
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
 
-
-console.log("heLLo")
+import "controllers"

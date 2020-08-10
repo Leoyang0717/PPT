@@ -40,7 +40,11 @@ class BoardsController < ApplicationController
   end
   def favorite
     current_user.toggle_favorite(@board)
-    redirect_to favorites_path, notice: 'OK!'
+
+    respond_to do |format|
+      format.html { redirect_to favorites_path, notice: 'OK!' }
+      format.json { render json: {status: @board.favorited_by?(current_user) } }
+    end
   end
   private
   def board_params

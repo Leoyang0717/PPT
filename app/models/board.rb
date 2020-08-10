@@ -11,6 +11,9 @@ class Board < ApplicationRecord
 
   validates :title ,:intro, presence: true
 
+    def favorited_by?(u)
+      favorited_users.include?(u)
+    end
   # def self.available
   #   where(deleted_at: nil)
   # end
