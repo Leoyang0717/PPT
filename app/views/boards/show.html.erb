@@ -14,9 +14,9 @@
 
 <% @post.each do |post| %>
   <ul>
-    <li>
+    <li data-controller="post" data-action="cat@window->post#something">
       <%= post.display_username %>
-      <%= link_to post.title,post_path(post) %>
+      <%= link_to post.title,post_path(post),data:{ target: 'post.title' }%>
       <%= link_to '編輯',edit_post_path(post) %>
       <%= link_to '刪除',post_path(post),method:'delete',data: {confirm: '確定刪除文章嗎?'}%>
     </li>
