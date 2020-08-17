@@ -29,6 +29,10 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'hirb-unicode', '~> 0.0.5'
+gem 'aasm', '~> 4.11'
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
+gem 'pundit', '~> 2.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

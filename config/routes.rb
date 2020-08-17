@@ -2,11 +2,19 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "boards#index"
 
+  namespace :api do
+    namespace :v2 do
+      resources :boards, only: [:index]
+    end
+  end
+
+
   resources :boards do 
     member do
       post :favorite
+      put :hide
     end
-    # resources :posts, only: [:index,:show,:new]
+    # resources :posts, only: [:index,:create,:new]
     resources :posts,shallow: true do
       resources :comments,shallow: true,only: [:create]
     end
