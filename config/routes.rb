@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "boards#index"
   get "/pricing", to: "pages#pricing"
   get "/payment", to: "pages#payment"
+  post "/checkout", to: "pages#checkout"
 
   namespace :api do
     namespace :v2 do

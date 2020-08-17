@@ -3,20 +3,28 @@
 
 <script src="https://js.braintreegateway.com/web/dropin/1.23.0/js/dropin.min.js"></script>
 
+<%= form_with(url: "/checkout?plan=#{@plan}", id: 'payment_form', method: 'post', local: true) do %>
   <div id="dropin-container"></div>
-  <button id="submit-button">Request payment method</button>
+  <button id="submit-button">付款</button>
+  <input type="hidden" value="" id="nonce" name="nonce">
+<% end %>
 
-  <script>
-    var button = document.querySelector('#submit-button');
+<script>
+  var button = document.querySelector('#submit-button');
 
-    braintree.dropin.create({
-      authorization: 'CLIENT_TOKEN_FROM_SERVER',
-      container: '#dropin-container'
-    }, function (createErr, instance) {
-      button.addEventListener('click', function () {
-        instance.requestPaymentMethod(function (err, payload) {
-          // Submit payload.nonce to your server
-        });
+  braintree.dropin.create({
+    authorization: '<%= @token %>',
+    container: '#dropin-container'
+  }, function (createErr, instance) {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      instance.requestPaymentMethod(function (err, payload) {
+        // Submit payload.nonce to your server
+        const form_nonce = document.querySelector('#nonce');
+        const form = document.querySelector('#payment_form')
+        form_nonce.value = payload.nonce;
+        form.submit()
       });
     });
-  </script>
+  });
+</script>
